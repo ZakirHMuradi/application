@@ -13,7 +13,7 @@ import qrcode
 import gdown
 
 st.set_page_config(
-    page_title="AI Analyze",
+    page_title="AI Diagnosis ",
     page_icon="logo.ico",  # 👈 Your custom image
     layout="centered"
 )
@@ -224,7 +224,7 @@ st.markdown(
     </style>
 """, unsafe_allow_html=True)
 
-st.markdown('<div class="main-title">🩺 UCA Clinic Diagnostic System</div>', unsafe_allow_html=True)
+st.markdown('<div class="main-title">🩺 AI Analyze: Leishmaniasis Detector </div>', unsafe_allow_html=True)
 st.markdown('<div class="sub-title">Accurate, AI-assisted Leishmaniasis Detection</div>', unsafe_allow_html=True)
 
 
