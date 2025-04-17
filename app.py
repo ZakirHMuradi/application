@@ -12,6 +12,12 @@ import os
 import qrcode
 import gdown
 
+st.set_page_config(
+    page_title="AI Analyze",
+    page_icon="logo.ico",  # 👈 Your custom image
+    layout="centered"
+)
+
 # ----------------- Google Drive File IDs -----------------
 file_ids = {
     "image_classification_with_augmentation.h5": "1Mx4aIan92NRkJCttQTxC-mHo50dHnm36",
