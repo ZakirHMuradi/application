@@ -224,7 +224,7 @@ st.markdown(
     </style>
 """, unsafe_allow_html=True)
 
-st.markdown('<div class="main-title">🩺 AI Analyze: Leishmaniasis Detector </div>', unsafe_allow_html=True)
+st.markdown('<div class="main-title">Leishmaniasis Detector </div>', unsafe_allow_html=True)
 st.markdown('<div class="sub-title">Accurate, AI-assisted Leishmaniasis Detection</div>', unsafe_allow_html=True)
 
 
