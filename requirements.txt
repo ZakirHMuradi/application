@@ -1,9 +1,9 @@
 streamlit==1.32.2
-tensorflow==2.15.0
+tensorflow==2.18.0
 Pillow==10.2.0
 numpy==1.26.4
-pandas==2.2.1
+pandas==2.2.2
 plotly==5.20.0
 fpdf==1.7.2
-gdown==5.1.0
-qrcode==7.4.2
+gdown==5.2.0
+qrcode==8.1
