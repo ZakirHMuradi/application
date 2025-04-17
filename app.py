@@ -10,6 +10,16 @@ from fpdf import FPDF
 import io
 import os
 import qrcode
+import gdown
+
+# ----------------- Google Drive File IDs -----------------
+file_ids = {
+    "image_classification_with_augmentation.h5": "1Mx4aIan92NRkJCttQTxC-mHo50dHnm36",
+    "fine_tuned_vgg16.h5": "1CqRq_vVArS4jJdt3W5xvgJIYDsWqrjQP",
+    "r_model.h5": "1kAfYa6C3XfJ2Yy3PFE4gnNxncEuNaBSh",
+    "g_model.h5": "12bjK1s3HBnUGfdoB5IY1TsIMtJK6QjSc",
+    "b_model.h5": "10ebJDDODwZr8a4Zh4WishB8PZ5IeVM8J"
+}
 
 # ----------------- Setup Models -----------------
 models = {
@@ -18,19 +28,38 @@ models = {
     "Multi-Channel Model": ["r_model.h5", "g_model.h5", "b_model.h5"],
 }
 
+# ----------------- Download from Google Drive -----------------
+@st.cache_data
+def download_model_files():
+    for model_value in models.values():
+        paths = model_value if isinstance(model_value, list) else [model_value]
+        for filename in paths:
+            if not os.path.exists(filename):
+                file_id = file_ids.get(filename)
+                if file_id:
+                    url = f"https://drive.google.com/uc?id={file_id}"
+                    st.write(f"Downloading {filename}...")
+                    gdown.download(url, filename, quiet=False)
+                else:
+                    st.error(f"File ID not found for {filename}")
+
+download_model_files()
+
+# ----------------- Load Models -----------------
 @st.cache_resource
 def load_model(model_path):
     if isinstance(model_path, list):
         return [tf.keras.models.load_model(path) for path in model_path]
     return tf.keras.models.load_model(model_path)
 
+# ----------------- Preprocessing Functions -----------------
 def preprocess_image(image, target_size):
     img = image.resize(target_size)
     img_array = img_to_array(img) / 255.0
     return np.expand_dims(img_array, axis=0)
 
 def preprocess_image_channels(image, target_size):
-    img = image.resize(target_size).convert('RGB')
+    img = image.resize(target_size).convert("RGB")
     img_array = np.array(img) / 255.0
     r, g, b = img_array[:, :, 0], img_array[:, :, 1], img_array[:, :, 2]
     return (
