@@ -38,7 +38,6 @@ def download_model_files():
                 file_id = file_ids.get(filename)
                 if file_id:
                     url = f"https://drive.google.com/uc?id={file_id}"
-                    st.write(f"Downloading {filename}...")
                     gdown.download(url, filename, quiet=False)
                 else:
                     st.error(f"File ID not found for {filename}")
